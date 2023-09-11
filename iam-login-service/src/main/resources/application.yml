@@ -62,6 +62,8 @@ spring:
      "mysql-test-tc": "mysql-test-tc,saml,registration"
      "mysql-test-tc-redis": "mysql-test-tc,saml,registration,redis-test"
      "prod": "mysql,flyway-repair"
+     "prod-redis-cluster": "mysql,flyway-repair,redis-cluster"
+     "prod-jdbc-session": "mysql,jdbc-session"
     
   jpa:
     generate-ddl: true
