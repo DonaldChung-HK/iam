@@ -1,10 +1,10 @@
-FROM eclipse-temurin:17 as builder
+FROM --platform=${BUILDPLATFORM} eclipse-temurin:17 as builder
 RUN mkdir /indigo-iam
 WORKDIR /indigo-iam
 COPY iam-login-service.war /indigo-iam/
 RUN java -Djarmode=layertools -jar iam-login-service.war extract
 
-FROM eclipse-temurin:17
+FROM --platform=${BUILDPLATFORM} eclipse-temurin:17
 RUN mkdir /indigo-iam
 WORKDIR /indigo-iam
 COPY --from=builder indigo-iam/dependencies/ ./
