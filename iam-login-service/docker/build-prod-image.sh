@@ -44,7 +44,7 @@ cd ${DIR}
 cp ${IAM_LOGIN_SERVICE_WAR} iam-login-service.war
 
 docker buildx build -f Dockerfile.prod --platform=${BUILD_PLATFORMS} \
-  --rm=true --no-cache=true \
+  --rm=true --no-cache=true --push\
   -t ${IAM_LOGIN_SERVICE_IMAGE}:${IAM_VERSION} .
 
 # if [[ -z ${IAM_LOGIN_SERVICE_VERSION} ]]; then
