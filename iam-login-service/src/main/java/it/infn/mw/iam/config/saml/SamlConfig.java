@@ -125,6 +125,8 @@ import org.springframework.security.web.authentication.www.BasicAuthenticationFi
 import org.springframework.security.web.firewall.HttpFirewall;
 import org.springframework.security.web.savedrequest.HttpSessionRequestCache;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+// Empty storage factory for SAML fix
+import org.springframework.security.saml.storage.EmptyStorageFactory;
 
 import com.google.common.base.Strings;
 
@@ -163,6 +165,7 @@ import it.infn.mw.iam.core.time.SystemTimeProvider;
 import it.infn.mw.iam.core.user.IamAccountService;
 import it.infn.mw.iam.persistence.repository.IamAccountRepository;
 import it.infn.mw.iam.service.aup.AUPSignatureCheckService;
+
 
 @Configuration
 @Order(value = Ordered.LOWEST_PRECEDENCE)
@@ -434,6 +437,11 @@ public class SamlConfig extends WebSecurityConfigurerAdapter
       cp.setServerPort(443);
       cp.setIncludeServerPortInRequestURL(false);
       cp.setContextPath("/");
+
+      // 
+
+      // FIX for wrong InResponseto Field when using redis
+      cp.setStorageFactory(new EmptyStorageFactory());
 
       return cp;
     }
