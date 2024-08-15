@@ -1,0 +1,11 @@
+spring:
+  session:
+    store-type: jdbc
+    jdbc:
+      cleanup-cron: 0 */45 * * * *
+      table-name: SPRING_SESSION
+session:
+  datasource:
+    url: jdbc:mysql://${IAM_SESSION_DB_HOST:dev.local.io}:${IAM_SESSION_DB_PORT:3306}/${SESSION_DB_NAME:session}?useSSL=${IAM_SESSION_DB_USE_SSL:false}&allowPublicKeyRetrieval=true
+    username: ${SESSION_DB_USERNAME}
+    password: ${SESSION_DB_PASSWORD}
