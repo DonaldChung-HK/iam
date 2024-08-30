@@ -1,0 +1,6 @@
+spring:
+  session:
+    store-type: jdbc
+    jdbc:
+      cleanup-cron: 0 */45 * * * *
+      table-name: SPRING_SESSION
