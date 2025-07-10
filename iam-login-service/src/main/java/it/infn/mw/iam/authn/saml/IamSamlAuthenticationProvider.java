@@ -133,8 +133,8 @@ public class IamSamlAuthenticationProvider extends SAMLAuthenticationProvider {
         .findFirst()
         .orElse(null);
 
-      if (totpMfaOptional.isPresent() && totpMfaOptional.get().isActive()
-          && authnContextClassRef == null) {
+      if ((totpMfaOptional.isPresent() && totpMfaOptional.get().isActive()
+          && authnContextClassRef == null) || user.getAuthorities().contains(Authorities.ROLE_PRE_AUTHENTICATED)) {
         List<GrantedAuthority> currentAuthorities = List.of(Authorities.ROLE_PRE_AUTHENTICATED);
         Set<GrantedAuthority> fullyAuthenticatedAuthorities = new HashSet<>(user.getAuthorities());
 
